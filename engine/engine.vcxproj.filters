@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="dependencies\WICTextureLoader11.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\app.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cbuffer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pixel_shader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vertex_shader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\app.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cbuffer.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="shaders\defs.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameMain.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\messager.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pixel_shader.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shader.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\texture.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vertex_shader.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\WICTextureLoader11.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\pixel_shader.hlsl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="shaders\vertex_shader.hlsl">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{0a3b6137-68c9-4551-bf5a-0a70246b151d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{db02d82f-359f-4db7-8621-b940b6bd7c56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{76f683d8-a7e9-4da0-ad54-bdf982c4c2c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
