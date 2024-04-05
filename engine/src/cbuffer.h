@@ -10,11 +10,11 @@
 class ConstantBuffer
 {
 public:
-	ConstantBuffer();
+	ConstantBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, UINT bufferNumber, UINT size);
 	ConstantBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, UINT bufferNumber, UINT size, void* data);
 	~ConstantBuffer();
 
-	void Update(ID3D11DeviceContext* deviceContext, void* data);
+	void UpdateData(void* data);
 	
 	void Set();
 

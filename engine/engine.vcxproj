@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="dependencies\WICTextureLoader11.cpp" />
     <ClCompile Include="src\messager.cpp" />
     <ClCompile Include="src\model.cpp" />
@@ -143,9 +144,12 @@
     <ClCompile Include="src\shader.cpp" />
     <ClCompile Include="src\vertex_shader.cpp" />
     <ClCompile Include="src\texture.cpp" />
+    <ClCompile Include="src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\camera.h" />
     <ClInclude Include="dependencies\WICTextureLoader11.h" />
+    <ClInclude Include="src\engine_state.h" />
     <ClInclude Include="src\messager.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="shaders\defs.h" />
@@ -157,6 +161,7 @@
     <ClInclude Include="src\shader.h" />
     <ClInclude Include="src\vertex_shader.h" />
     <ClInclude Include="src\texture.h" />
+    <ClInclude Include="src\window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\pixel_shader.hlsl" />

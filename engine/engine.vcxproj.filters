@@ -34,6 +34,8 @@
     <ClCompile Include="src\vertex_shader.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.h">
@@ -72,6 +74,9 @@
     <ClInclude Include="dependencies\WICTextureLoader11.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="src\camera.h" />
+    <ClInclude Include="src\window.h" />
+    <ClInclude Include="src\engine_state.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\pixel_shader.hlsl">
