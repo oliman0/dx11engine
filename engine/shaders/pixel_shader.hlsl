@@ -4,7 +4,6 @@ struct VS_OUTPUT
     float2 TexCoord : TEXCOORD;
 };
 
-
 Texture2D ObjTexture;
 SamplerState ObjSamplerState;
 

@@ -11,13 +11,13 @@ VertexShader::VertexShader(ID3D11Device* device, ID3D11DeviceContext* deviceCont
 	HRESULT result = device->CreateInputLayout(vertexDesc, numOfElements, 
 								vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), &m_inputLayout);
 	if (FAILED(result)) {
-		GetMessager()->ShowErrorBoxRepeat(L"Failed to create Vertex Input Layout.", L"Vertex Shader Error");
+		ShowErrorBoxRepeat(L"Failed to create Vertex Input Layout.", L"Vertex Shader Error");
 	}
 
 	// Create Shader
 	result = device->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), NULL, &m_vertexShader);
 	if (FAILED(result)) {
-		GetMessager()->ShowErrorBoxRepeat(L"Failed to Create Vertex Shader.", L"Vertex Shader Error");
+		ShowErrorBoxRepeat(L"Failed to Create Vertex Shader.", L"Vertex Shader Error");
 	}
 
 	vsBlob->Release();

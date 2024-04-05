@@ -21,7 +21,7 @@ Model::Model(ID3D11Device* device, ID3D11DeviceContext* deviceContext, UINT sing
 
     // Create Buffer
     HRESULT hr = device->CreateBuffer(&vertexBufferDesc, &vertexBufferData, &m_vertexBuffer);
-    if (FAILED(hr)) GetMessager()->ShowErrorBoxRepeat(L"Failed to Create Vertex Buffer.", L"Error");
+    if (FAILED(hr)) ShowErrorBoxRepeat(L"Failed to Create Vertex Buffer.", L"Error");
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,7 +43,7 @@ Model::Model(ID3D11Device* device, ID3D11DeviceContext* deviceContext, UINT sing
 
     // Create Buffer
     hr = device->CreateBuffer(&indexBufferDesc, &indexBufferData, &m_indexBuffer);
-    if (FAILED(hr)) GetMessager()->ShowErrorBoxRepeat(L"Failed to Create Index Buffer.", L"Error");
+    if (FAILED(hr)) ShowErrorBoxRepeat(L"Failed to Create Index Buffer.", L"Error");
 
     // Create Texture
     m_texture = new Texture(device, deviceContext, texturePath);

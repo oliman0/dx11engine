@@ -10,7 +10,7 @@ PixelShader::PixelShader(ID3D11Device* device, ID3D11DeviceContext* deviceContex
 	// Create Shader
 	HRESULT result = device->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), NULL, &m_pixelShader);
 	if (FAILED(result)) {
-		GetMessager()->ShowErrorBoxRepeat(L"Failed to Create Pixel Shader.", L"Pixel Shader Error");
+		ShowErrorBoxRepeat(L"Failed to Create Pixel Shader.", L"Pixel Shader Error");
 	}
 
 	psBlob->Release();
