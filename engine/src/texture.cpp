@@ -18,7 +18,7 @@ Texture::Texture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, LPCWS
 	if (FAILED(hr)) ShowErrorBoxRepeat(L"Failed to Create Texture Sampler State", L"Error");
 
 	// Load Texture
-	hr = CreateWICTextureFromFileEx(device, deviceContext, texturePath, 0, D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0, 0, WIC_LOADER_IGNORE_SRGB, nullptr, &m_texture);
+	hr = CreateWICTextureFromFileEx(device, deviceContext, texturePath, 0, D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, cpuAccessFlags, miscFlags, loaderFlags, nullptr, &m_texture);
 	if(FAILED(hr)) ShowErrorBoxRepeat(L"Failed to Load Texture", L"Error");
 }
 

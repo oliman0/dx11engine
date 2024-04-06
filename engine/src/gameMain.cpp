@@ -2,7 +2,7 @@
 
 Game::Game(EngineState engineState) :
 	projection(XMMatrixPerspectiveFovLH(1.309f, 1920.0f / 1080.0f, 0.1f, 1000.0f)),
-	camera(XMVectorSet(5.0f, 2.0f, -10.0f, 0.0f)),
+	camera(XMVectorSet(2.0f, 1.5f, -5.0f, 0.0f)),
 	vertexShader(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), 2, layout, L"./shaders/vertex_shader.hlsl"),
 	pixelShader(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), L"./shaders/pixel_shader.hlsl"),
 	wvpMatrixBuffer(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), 0, sizeof(cbPerObject))

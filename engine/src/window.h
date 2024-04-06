@@ -1,6 +1,12 @@
 #pragma once
 
-#include <windows.h>#
+#include <windows.h>
+
+#define WINDOWSTYLE (WS_OVERLAPPED     | \
+                     WS_CAPTION        | \
+                     WS_SYSMENU        | \
+                     WS_MINIMIZEBOX    | \
+                     WS_MAXIMIZEBOX)
 
 class Window
 {

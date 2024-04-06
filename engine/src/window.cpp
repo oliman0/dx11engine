@@ -30,10 +30,10 @@ Window::Window() : m_className(L""), m_hInstance(0), m_hWnd(0), m_shouldClose(fa
     // Create the window.
 
     m_hWnd = CreateWindowEx(
-        0,                                // Optional window styles.
-        m_className,                     // Window class
-        L"Directx 11",                  // Window text
-        WS_OVERLAPPEDWINDOW,           // Window style
+        0,                      // Optional window styles.
+        m_className,           // Window class
+        L"Directx 11",        // Window text
+        WINDOWSTYLE,         // Window style
 
         // Size and position
         0, 0, 1920, 1080,
