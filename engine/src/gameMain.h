@@ -15,7 +15,7 @@
 
 struct Vertex
 {
-	Vertex() {}
+	Vertex() : pos(0, 0, 0), texCoord(0, 0) {}
 	Vertex(float x, float y, float z,
 		float u, float v)
 		: pos(x, y, z), texCoord(u, v) {}
@@ -44,7 +44,7 @@ public:
 	~Game();
 
 	void OnStart();
-	void OnUpdate(EngineState engineState);
+	void OnUpdate(EngineState engineState, float deltaTime);
 	void OnFixedUpdate();
 
 	void Draw(Direct3D* direct3d);

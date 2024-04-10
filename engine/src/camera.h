@@ -15,11 +15,22 @@ public:
 	void MoveToPosition(XMVECTOR position);
 	void MoveByVector(XMVECTOR vector);
 
+	void SetPitch(float pitch);
+	void SetYaw(float yaw);
+	void AddPitch(float pitch);
+	void AddYaw(float yaw);
+
+	XMVECTOR GetFrontVector();
+	XMVECTOR GetUpVector();
+
 	XMMATRIX View();
 
 private:
 	XMVECTOR m_position;
 	XMVECTOR m_up;
 	XMVECTOR m_forward;
+
+	float m_pitch;
+	float m_yaw;
 };
 

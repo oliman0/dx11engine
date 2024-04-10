@@ -1,6 +1,7 @@
 #include "window.h"
 
-Window::Window() : m_className(L""), m_hInstance(0), m_hWnd(0), m_shouldClose(false) {
+Window::Window(int windowWidth, int windowHeight, LPCWSTR title, bool showConsole) : m_className(L""), m_hInstance(0), m_hWnd(0), m_shouldClose(false), m_windowWidth(windowWidth), m_windowHeight(windowHeight), m_cursorLocked(false),
+                                                                                     m_mousePosition(0, 0), m_mouseOffset(0, 0) {
     for (int i = 0; i < 256; i++)
     {
         m_keysDown[i] = false;
@@ -32,11 +33,11 @@ Window::Window() : m_className(L""), m_hInstance(0), m_hWnd(0), m_shouldClose(fa
     m_hWnd = CreateWindowEx(
         0,                                // Optional window styles.
         m_className,                     // Window class
-        L"Directx 11",                  // Window text
+        title,                          // Window text
         WS_OVERLAPPEDWINDOW,           // Window style
 
         // Size and position
-        0, 0, 1920, 1080,
+        0, 0, windowWidth, windowHeight,
 
         NULL,           // Parent window    
         NULL,          // Menu
@@ -50,11 +51,17 @@ Window::Window() : m_className(L""), m_hInstance(0), m_hWnd(0), m_shouldClose(fa
     }
 
     ShowWindow(m_hWnd, TRUE);
+
+    if (showConsole) {
+        AllocConsole();
+        FILE* fDummy;
+        freopen_s(&fDummy, "CONOUT$", "w", stdout);
+    }
 }
 
 Window::~Window() {}
 
-HWND Window::HWindow() { return m_hWnd; }
+HWND Window::GetHWindow() { return m_hWnd; }
 
 void Window::Close() {
     // Remove the window.
@@ -91,6 +98,27 @@ LRESULT CALLBACK Window::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPA
         m_keysHold[(unsigned int)wparam] = false;
         return 0;
     }
+    case WM_MOUSEMOVE:
+    {
+        if (m_cursorLocked) {
+            POINT pos;
+            GetCursorPos(&pos);
+
+            m_mouseOffset = XMFLOAT2((float)pos.x - ((float)m_windowWidth / 2.0f), (float)pos.y - ((float)m_windowHeight / 2.0f));
+
+            m_mousePosition = XMFLOAT2((float)pos.x, (float)pos.y);
+
+            if (GetFocus() == m_hWnd) SetCursorPos(m_windowWidth / 2, m_windowHeight / 2);
+        }
+        else {
+            POINT pos;
+            GetCursorPos(&pos);
+
+            m_mouseOffset = XMFLOAT2((float)pos.x - (float)m_mousePosition.x, (float)pos.y - (float)m_mousePosition.y);
+
+            m_mousePosition = XMFLOAT2((float)pos.x, (float)pos.y);
+        }
+    }
 
     // Any other messages send to the default message handler as our application won't make use of them.
     default:
@@ -118,6 +146,12 @@ void Window::PollEvents() {
 
 bool Window::KeyDown(unsigned int key) { return m_keysDown[key]; }
 bool Window::KeyHold(unsigned int key) { return m_keysHold[key]; }
+
+XMFLOAT2 Window::GetMousePosition() { return m_mousePosition; }
+XMFLOAT2 Window::GetMouseOffset() { return m_mouseOffset; }
+
+void Window::SetCursorLocked(bool lock) { m_cursorLocked = lock; ShowCursor(!lock); }
+bool Window::GetCursorLocked() { return m_cursorLocked; }
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg)
