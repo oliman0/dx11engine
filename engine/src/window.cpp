@@ -34,7 +34,7 @@ Window::Window(int windowWidth, int windowHeight, LPCWSTR title, bool showConsol
         0,                                // Optional window styles.
         m_className,                     // Window class
         title,                          // Window text
-        WS_OVERLAPPEDWINDOW,           // Window style
+        WINDOWSTYLE,                   // Window style
 
         // Size and position
         0, 0, windowWidth, windowHeight,
