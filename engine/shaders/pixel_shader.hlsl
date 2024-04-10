@@ -4,11 +4,14 @@ struct VS_OUTPUT
     float2 TexCoord : TEXCOORD;
 };
 
-
 Texture2D ObjTexture;
 SamplerState ObjSamplerState;
 
 float4 PSMain(VS_OUTPUT input) : SV_TARGET
 {
-    return ObjTexture.Sample(ObjSamplerState, input.TexCoord);
+    float4 colour = ObjTexture.Sample(ObjSamplerState, input.TexCoord);
+    
+    clip(colour.a - .25);
+    
+    return colour;
 }

@@ -55,7 +55,7 @@ bool Direct3D::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	ZeroMemory(&rasterStateDesc, sizeof(D3D11_RASTERIZER_DESC));
 
 	rasterStateDesc.FillMode = D3D11_FILL_SOLID;
-	rasterStateDesc.CullMode = D3D11_CULL_NONE;
+	rasterStateDesc.CullMode = D3D11_CULL_BACK;
 
 	//Create our SwapChain
 	hr = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, NULL, NULL, NULL,

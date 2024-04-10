@@ -14,7 +14,7 @@ ConstantBuffer::ConstantBuffer(ID3D11Device* device, ID3D11DeviceContext* device
 	// Create the Buffer
 	HRESULT hr = device->CreateBuffer(&cbDesc, nullptr, &m_constantBuffer);
 	// If failed show an error MessageBox
-	if (FAILED(hr)) GlobalMessager->ShowErrorBoxRepeat(L"Failed to create CBuffer", L"CBuffer Error");
+	if (FAILED(hr)) ShowErrorBoxRepeat(L"Failed to create CBuffer", L"CBuffer Error");
 }
 
 ConstantBuffer::ConstantBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, UINT bufferNumber, UINT size, void* data) : m_constantBuffer(0), m_bufferNum(bufferNumber), m_deviceContext(deviceContext) {
@@ -35,7 +35,7 @@ ConstantBuffer::ConstantBuffer(ID3D11Device* device, ID3D11DeviceContext* device
 	// Create the Buffer
 	HRESULT hr = device->CreateBuffer(&cbDesc, &initData, &m_constantBuffer);
 	// If failed show an error MessageBox
-	if (FAILED(hr)) GlobalMessager->ShowErrorBoxRepeat(L"Failed to create CBuffer", L"CBuffer Error");
+	if (FAILED(hr)) ShowErrorBoxRepeat(L"Failed to create CBuffer", L"CBuffer Error");
 }
 
 ConstantBuffer::~ConstantBuffer() {}

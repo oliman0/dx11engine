@@ -25,12 +25,12 @@ bool Shader::CompileShader(const WCHAR* scrFilePath, const char* entryPoint, con
 			const char* errormsg = (char*)errorBlob->GetBufferPointer();
 			std::wstring errorstr(errormsg, errormsg + strlen(errormsg));
 
-			if (GetMessager()->ShowErrorBox((LPCWSTR)(scrFilePath + std::wstring(L":\n") + errorstr).c_str(), L"Shader Compile Error") == IDRETRY)
+			if (ShowErrorBox((LPCWSTR)(scrFilePath + std::wstring(L":\n") + errorstr).c_str(), L"Shader Compile Error") == IDRETRY)
 				return false;
 		}
 		// If there's no error message then file is not found.
 		else {
-			if (GetMessager()->ShowErrorBox((LPCWSTR)(std::wstring(L"Cannot Find File:\n") + scrFilePath).c_str(), L"Missing Shader File") == IDRETRY)
+			if (ShowErrorBox((LPCWSTR)(std::wstring(L"Cannot Find File:\n") + scrFilePath).c_str(), L"Missing Shader File") == IDRETRY)
 				return false;
 		}
 	}
