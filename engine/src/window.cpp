@@ -104,9 +104,9 @@ LRESULT CALLBACK Window::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPA
             POINT pos;
             GetCursorPos(&pos);
 
-            m_mouseOffset = XMFLOAT2((float)pos.x - ((float)m_windowWidth / 2.0f), (float)pos.y - ((float)m_windowHeight / 2.0f));
+            m_mouseOffset = Math::Vector2((float)pos.x - ((float)m_windowWidth / 2.0f), (float)pos.y - ((float)m_windowHeight / 2.0f));
 
-            m_mousePosition = XMFLOAT2((float)pos.x, (float)pos.y);
+            m_mousePosition = Math::Vector2((float)pos.x, (float)pos.y);
 
             if (GetFocus() == m_hWnd) SetCursorPos(m_windowWidth / 2, m_windowHeight / 2);
         }
@@ -114,9 +114,9 @@ LRESULT CALLBACK Window::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPA
             POINT pos;
             GetCursorPos(&pos);
 
-            m_mouseOffset = XMFLOAT2((float)pos.x - (float)m_mousePosition.x, (float)pos.y - (float)m_mousePosition.y);
+            m_mouseOffset = Math::Vector2((float)pos.x - (float)m_mousePosition.x, (float)pos.y - (float)m_mousePosition.y);
 
-            m_mousePosition = XMFLOAT2((float)pos.x, (float)pos.y);
+            m_mousePosition = Math::Vector2((float)pos.x, (float)pos.y);
         }
     }
 
@@ -147,8 +147,8 @@ void Window::PollEvents() {
 bool Window::KeyDown(unsigned int key) { return m_keysDown[key]; }
 bool Window::KeyHold(unsigned int key) { return m_keysHold[key]; }
 
-XMFLOAT2 Window::GetMousePosition() { return m_mousePosition; }
-XMFLOAT2 Window::GetMouseOffset() { return m_mouseOffset; }
+Math::Vector2 Window::GetMousePosition() { return m_mousePosition; }
+Math::Vector2 Window::GetMouseOffset() { return m_mouseOffset; }
 
 void Window::SetCursorLocked(bool lock) { m_cursorLocked = lock; ShowCursor(!lock); }
 bool Window::GetCursorLocked() { return m_cursorLocked; }

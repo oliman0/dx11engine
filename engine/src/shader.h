@@ -7,8 +7,6 @@
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
-#include <directxmath.h>
-using namespace DirectX;
 
 #include "./messager.h"
 #include "./cbuffer.h"

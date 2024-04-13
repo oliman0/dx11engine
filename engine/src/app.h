@@ -24,21 +24,17 @@ public:
 	void Shutdown();
 
 private:
-	void StartTimer();
-	float GetTime();
-	float GetFrameTime();
+	void GetCounterFrequency();
+	void CalculateDeltaTime();
 
 private:
 	Game* m_main;
 	Direct3D* m_direct3d;
 	Window* m_window;
 
-	float m_countsPerSecond = 0.0;
-	__int64 m_counterStart = 0;
+	float m_countsPerSecond;
 
-	int m_frameCount = 0;
-	int m_fps = 0;
-
-	__int64 m_frameTimeOld = 0;
-	float m_frameTime;
+	__int64 m_lastTime;
+	float m_deltaTime;
+	float m_maxDeltaTime;
 };

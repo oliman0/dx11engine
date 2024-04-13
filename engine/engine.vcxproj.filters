@@ -36,6 +36,11 @@
     </ClCompile>
     <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\window.cpp" />
+    <ClCompile Include="src\rigidbody.cpp" />
+    <ClCompile Include="src\engine_math.cpp" />
+    <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\collider.cpp" />
+    <ClCompile Include="physics_world.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.h">
@@ -77,6 +82,11 @@
     <ClInclude Include="src\camera.h" />
     <ClInclude Include="src\window.h" />
     <ClInclude Include="src\engine_state.h" />
+    <ClInclude Include="src\rigidbody.h" />
+    <ClInclude Include="src\engine_math.h" />
+    <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\collider.h" />
+    <ClInclude Include="physics_world.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\pixel_shader.hlsl">

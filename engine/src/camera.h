@@ -3,32 +3,32 @@
 
 #pragma once
 
-#include <DirectXMath.h>
-using namespace DirectX;
+#include "engine_math.h"
 
 class Camera
 {
 public:
-	Camera(XMVECTOR startPosition);
+	Camera(Math::Vector3 startPosition);
 	~Camera();
 
-	void MoveToPosition(XMVECTOR position);
-	void MoveByVector(XMVECTOR vector);
+	Math::Vector3 GetPosition();
+	void MoveToPosition(Math::Vector3 position);
+	void MoveByVector(Math::Vector3 vector);
 
 	void SetPitch(float pitch);
 	void SetYaw(float yaw);
 	void AddPitch(float pitch);
 	void AddYaw(float yaw);
 
-	XMVECTOR GetFrontVector();
-	XMVECTOR GetUpVector();
+	Math::Vector3 GetFrontVector();
+	Math::Vector3 GetUpVector();
 
-	XMMATRIX View();
+	DirectX::XMMATRIX View();
 
-private:
-	XMVECTOR m_position;
-	XMVECTOR m_up;
-	XMVECTOR m_forward;
+protected:
+	Math::Vector3 m_position;
+	Math::Vector3 m_up;
+	Math::Vector3 m_forward;
 
 	float m_pitch;
 	float m_yaw;

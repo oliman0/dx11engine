@@ -5,8 +5,7 @@
 
 #include <string>
 
-#include <DirectXMath.h>
-using namespace DirectX;
+#include "engine_math.h"
 
 #define WINDOWSTYLE (WS_OVERLAPPED     | \
                      WS_CAPTION        | \
@@ -29,8 +28,8 @@ public:
 	bool KeyDown(unsigned int key);
 	bool KeyHold(unsigned int key);
 
-	XMFLOAT2 GetMousePosition();
-	XMFLOAT2 GetMouseOffset();
+	Math::Vector2 GetMousePosition();
+	Math::Vector2 GetMouseOffset();
 
 	void SetCursorLocked(bool lock);
 	bool GetCursorLocked();
@@ -47,8 +46,8 @@ private:
 	bool m_keysDown[256];
 	bool m_keysHold[256];
 
-	XMFLOAT2 m_mousePosition;
-	XMFLOAT2 m_mouseOffset;
+	Math::Vector2 m_mousePosition;
+	Math::Vector2 m_mouseOffset;
 
 	HINSTANCE m_hInstance;
 	LPCWSTR m_className;

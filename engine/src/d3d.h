@@ -10,8 +10,6 @@
 #pragma warning(suppress : 6387)
 
 #include <d3d11.h>
-#include <directxmath.h>
-using namespace DirectX;
 
 class Direct3D
 {

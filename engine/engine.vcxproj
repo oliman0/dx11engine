@@ -132,8 +132,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="physics_world.cpp" />
+    <ClCompile Include="src\collider.cpp" />
+    <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\rigidbody.cpp" />
     <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="dependencies\WICTextureLoader11.cpp" />
+    <ClCompile Include="src\engine_math.cpp" />
     <ClCompile Include="src\messager.cpp" />
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\cbuffer.cpp" />
@@ -147,8 +152,13 @@
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="physics_world.h" />
+    <ClInclude Include="src\collider.h" />
+    <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\rigidbody.h" />
     <ClInclude Include="src\camera.h" />
     <ClInclude Include="dependencies\WICTextureLoader11.h" />
+    <ClInclude Include="src\engine_math.h" />
     <ClInclude Include="src\engine_state.h" />
     <ClInclude Include="src\messager.h" />
     <ClInclude Include="src\model.h" />

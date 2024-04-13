@@ -10,8 +10,10 @@
 #include "./pixel_shader.h"
 #include "./model.h"
 #include "./cbuffer.h"
-#include "./camera.h"
+#include "./player.h"
 #include "./engine_state.h"
+
+#include "./engine_math.h"
 
 struct Vertex
 {
@@ -51,12 +53,15 @@ public:
 
 private:
 	XMMATRIX projection;
-	Camera camera;
+	Player player;
 
 	std::vector<Model> models;
 
 	VertexShader vertexShader;
 	PixelShader pixelShader;
-	ConstantBuffer wvpMatrixBuffer;
+	ConstantBuffer mvpMatrixBuffer;
+
+	Physics::AABBCollider floorCollider;
+	Physics::AABBCollider wallCollider;
 };
 
