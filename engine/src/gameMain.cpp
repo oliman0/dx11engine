@@ -6,17 +6,16 @@ Game::Game(EngineState engineState) :
 	vertexShader(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), 2, layout, L"./shaders/vertex_shader.hlsl"),
 	pixelShader(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), L"./shaders/pixel_shader.hlsl"),
 	mvpMatrixBuffer(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), 0, sizeof(cbPerObject)),
-    floorCollider(Math::Vector3(-50.0f, -5.0f, -50.0f), Math::Vector3(50.0f, 0.0f, 50.0f)),
-    wallCollider(Math::Vector3(-50.0f, 0.0f, -51.0f), Math::Vector3(50.0f, 10.0f, -50.0f))
+    floorCollider(Math::Vector3(-50.0f, -5.0f, -50.0f), Math::Vector3(50.0f, 0.0f, 50.0f))
 {
     //Create the vertex buffer
     Vertex v[] =
     {
         // Front Face
-        Vertex(-1.0f, -1.0f, -2.0f, 0.0f, 1.0f),
-        Vertex(-1.0f,  1.0f, -2.0f, 0.0f, 0.0f),
-        Vertex(1.0f,  1.0f, -2.0f, 1.0f, 0.0f),
-        Vertex(1.0f, -1.0f, -2.0f, 1.0f, 1.0f),
+        Vertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
+        Vertex(-1.0f,  2.0f, -1.0f, 0.0f, 0.0f),
+        Vertex(1.0f,  2.0f, -1.0f, 1.0f, 0.0f),
+        Vertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f),
 
         // Back Face
         Vertex(-1.0f, -1.0f, 1.0f, 1.0f, 1.0f),
@@ -25,10 +24,10 @@ Game::Game(EngineState engineState) :
         Vertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f),
 
         // Top Face
-        Vertex(-1.0f, 1.0f, -1.0f, 0.0f, 1.0f),
+        Vertex(-1.0f, 2.0f, -1.0f, 0.0f, 1.0f),
         Vertex(-1.0f, 1.0f,  1.0f, 0.0f, 0.0f),
         Vertex(1.0f, 1.0f,  1.0f, 1.0f, 0.0f),
-        Vertex(1.0f, 1.0f, -1.0f, 1.0f, 1.0f),
+        Vertex(1.0f, 2.0f, -1.0f, 1.0f, 1.0f),
 
         // Bottom Face
         Vertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f),
@@ -39,12 +38,12 @@ Game::Game(EngineState engineState) :
         // Left Face
         Vertex(-1.0f, -1.0f,  1.0f, 0.0f, 1.0f),
         Vertex(-1.0f,  1.0f,  1.0f, 0.0f, 0.0f),
-        Vertex(-1.0f,  1.0f, -1.0f, 1.0f, 0.0f),
+        Vertex(-1.0f,  2.0f, -1.0f, 1.0f, 0.0f),
         Vertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f),
 
         // Right Face
         Vertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
-        Vertex(1.0f,  1.0f, -1.0f, 0.0f, 0.0f),
+        Vertex(1.0f,  2.0f, -1.0f, 0.0f, 0.0f),
         Vertex(1.0f,  1.0f,  1.0f, 1.0f, 0.0f),
         Vertex(1.0f, -1.0f,  1.0f, 1.0f, 1.0f),
     };
@@ -102,7 +101,7 @@ Game::~Game() {
 
 void Game::OnStart() {}
 
-void Game::OnUpdate(EngineState engineState, float deltaTime) {
+void Game::OnUpdate(EngineState engineState) {
     Math::Vector3 front = player.GetCameraFrontVector();
     front.y = 0.0f;
 
@@ -115,22 +114,18 @@ void Game::OnUpdate(EngineState engineState, float deltaTime) {
     if (engineState.window->KeyHold(0x44)) movement += -Math::Normalize(Math::Cross(front, up));
     if (engineState.window->KeyHold(0x41)) movement += Math::Normalize(Math::Cross(front, up));
 
-    movement = Math::Normalize(movement) * 50 * deltaTime;
+    movement = Math::Normalize(movement) * 50 * engineState.engineTime->FrameDelta();
     player.MoveByVector(movement);
 
-    if (engineState.window->KeyDown(VK_SPACE) && player.RigidBody()->GetGrounded()) {
-        player.RigidBody()->AddForce(Math::Vector3(0.0f, 50000.0f, 0.0f)); }
-
-    player.UpdatePhysics(deltaTime);
+    if (engineState.window->KeyDown(VK_SPACE) && player.RigidBody()->GetGrounded()) player.RigidBody()->AddForce(Math::Vector3(0.0f, 2000.0f, 0.0f));
 
     player.TestCollision(floorCollider, Math::Vector3(0.0f));
-    //player.TestCollision(wallCollider, Math::Vector3(0.0f));
 
     if (engineState.window->KeyDown(VK_F1)) engineState.window->SetCursorLocked(!engineState.window->GetCursorLocked());
 
     Math::Vector2 mouse = engineState.window->GetMouseOffset();
-    player.AddCameraPitch(-mouse.y * 50.0f *  deltaTime);
-    player.AddCameraYaw(-mouse.x * 50.0f * deltaTime);
+    player.AddCameraPitch(-mouse.y * 50.0f * engineState.engineTime->FrameDelta());
+    player.AddCameraYaw(-mouse.x * 50.0f * engineState.engineTime->FrameDelta());
 
     cbPerObject cbPerObj;
     cbPerObj.WVP = XMMatrixTranspose(player.CameraView() * projection);
@@ -138,7 +133,9 @@ void Game::OnUpdate(EngineState engineState, float deltaTime) {
     mvpMatrixBuffer.UpdateData(&cbPerObj);
 }
 
-void Game::OnFixedUpdate() {}
+void Game::OnFixedUpdate(EngineState engineState) { 
+    player.UpdatePhysics(engineState.engineTime->TickDelta());
+}
 
 void Game::Draw(Direct3D* direct3d) {
     vertexShader.Set();

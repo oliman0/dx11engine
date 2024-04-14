@@ -32,5 +32,6 @@ public:
 private:
 	Physics::RigidBody m_rigidBody;
 	Physics::AABBCollider m_collider;
+	Physics::AABBCollider m_groundedCollider;
 };
 

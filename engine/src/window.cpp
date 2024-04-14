@@ -101,14 +101,17 @@ LRESULT CALLBACK Window::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPA
     case WM_MOUSEMOVE:
     {
         if (m_cursorLocked) {
+            RECT winRect;
+            GetWindowRect(m_hWnd, &winRect);
+
             POINT pos;
             GetCursorPos(&pos);
 
-            m_mouseOffset = Math::Vector2((float)pos.x - ((float)m_windowWidth / 2.0f), (float)pos.y - ((float)m_windowHeight / 2.0f));
+            m_mouseOffset = Math::Vector2((float)pos.x - ((float)winRect.left + (float)m_windowWidth / 2.0f), (float)pos.y - ((float)winRect.top + (float)m_windowHeight / 2.0f));
 
             m_mousePosition = Math::Vector2((float)pos.x, (float)pos.y);
 
-            if (GetFocus() == m_hWnd) SetCursorPos(m_windowWidth / 2, m_windowHeight / 2);
+            if (GetFocus() == m_hWnd) SetCursorPos((int)winRect.left + (m_windowWidth / 2), (int)winRect.top + (m_windowHeight / 2));
         }
         else {
             POINT pos;

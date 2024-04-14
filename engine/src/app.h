@@ -12,6 +12,7 @@
 
 #include "./gameMain.h"
 #include "./engine_state.h"
+#include "./timer.h"
 
 class App
 {
@@ -24,17 +25,8 @@ public:
 	void Shutdown();
 
 private:
-	void GetCounterFrequency();
-	void CalculateDeltaTime();
-
-private:
 	Game* m_main;
 	Direct3D* m_direct3d;
 	Window* m_window;
-
-	float m_countsPerSecond;
-
-	__int64 m_lastTime;
-	float m_deltaTime;
-	float m_maxDeltaTime;
+	Time* m_engineTimer;
 };

@@ -46,8 +46,8 @@ public:
 	~Game();
 
 	void OnStart();
-	void OnUpdate(EngineState engineState, float deltaTime);
-	void OnFixedUpdate();
+	void OnUpdate(EngineState engineState);
+	void OnFixedUpdate(EngineState engineState);
 
 	void Draw(Direct3D* direct3d);
 
@@ -62,6 +62,5 @@ private:
 	ConstantBuffer mvpMatrixBuffer;
 
 	Physics::AABBCollider floorCollider;
-	Physics::AABBCollider wallCollider;
 };
 
