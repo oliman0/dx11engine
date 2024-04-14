@@ -12,7 +12,7 @@ public:
 	~Camera();
 
 	Math::Vector3 GetPosition();
-	void MoveToPosition(Math::Vector3 position);
+	void SetPosition(Math::Vector3 position);
 	void MoveByVector(Math::Vector3 vector);
 
 	void SetPitch(float pitch);

@@ -10,13 +10,15 @@ public:
 	Player(Math::Vector3 startPosition);
 	~Player();
 	
+	void Update(Time* time);
+
 	void UpdatePhysics(float deltaTime);
 	bool TestCollision(Physics::AABBCollider& other, Math::Vector3 otherPosition);
 
 	Physics::RigidBody* RigidBody();
 
 	Math::Vector3 GetPosition();
-	void MoveToPosition(Math::Vector3 position);
+	void SetPosition(Math::Vector3 position);
 	void MoveByVector(Math::Vector3 vector);
 
 	void SetCameraPitch(float pitch);

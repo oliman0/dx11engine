@@ -50,3 +50,6 @@ __int64 Time::GetCount() {
 
     return currentTime.QuadPart;
 }
+
+int Time::GetTickRate() { return m_tickRate; }
+TIMER Time::GetTickTimer() { return m_tickTimer; }

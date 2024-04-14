@@ -19,6 +19,9 @@ public:
 	float FrameDelta();
 	float TickDelta();
 
+	int GetTickRate();
+	TIMER GetTickTimer();
+
 private:
 	float GetCounterFrequency();
 	__int64 GetCount();

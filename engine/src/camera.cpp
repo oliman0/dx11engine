@@ -5,7 +5,7 @@ Camera::Camera(Math::Vector3 startPosition) : m_position(startPosition), m_up(0,
 Camera::~Camera() {}
 
 Math::Vector3 Camera::GetPosition() { return m_position; }
-void Camera::MoveToPosition(Math::Vector3 position) { m_position = position; }
+void Camera::SetPosition(Math::Vector3 position) { m_position = position; }
 void Camera::MoveByVector(Math::Vector3 vector) { m_position += vector; }
 
 void Camera::SetPitch(float pitch) {

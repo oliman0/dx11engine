@@ -115,9 +115,11 @@ void Game::OnUpdate(EngineState engineState) {
     if (engineState.window->KeyHold(0x41)) movement += Math::Normalize(Math::Cross(front, up));
 
     movement = Math::Normalize(movement) * 50 * engineState.engineTime->FrameDelta();
-    player.MoveByVector(movement);
+    player.RigidBody()->MoveByVector(movement);
 
     if (engineState.window->KeyDown(VK_SPACE) && player.RigidBody()->GetGrounded()) player.RigidBody()->AddForce(Math::Vector3(0.0f, 2000.0f, 0.0f));
+
+    player.Update(engineState.engineTime);
 
     player.TestCollision(floorCollider, Math::Vector3(0.0f));
 
