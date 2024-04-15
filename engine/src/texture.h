@@ -1,3 +1,6 @@
+// texture.h
+// Handles texture loading and binding
+
 #pragma once
 
 #include <d3d11.h>

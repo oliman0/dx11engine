@@ -1,3 +1,6 @@
+// window.h
+// Handles the window and User Input
+
 #pragma once
 
 #include <windows.h>

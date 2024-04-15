@@ -41,6 +41,7 @@
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\collider.cpp" />
     <ClCompile Include="src\timer.cpp" />
+    <ClCompile Include="src\physics_object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app.h">
@@ -87,6 +88,7 @@
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\collider.h" />
     <ClInclude Include="src\timer.h" />
+    <ClInclude Include="src\physics_object.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\pixel_shader.hlsl">

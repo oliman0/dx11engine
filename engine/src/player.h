@@ -1,25 +1,25 @@
+// player.h
+// Similar to physics_object.h but handles specifically the player and camera.
+
 #pragma once
 
 #include "rigidbody.h"
 #include "collider.h"
 #include "camera.h"
 
-class Player : Camera
+class Player : public Physics::RigidBody, Camera
 {
 public:
 	Player(Math::Vector3 startPosition);
 	~Player();
 	
-	void Update(Time* time);
-
-	void UpdatePhysics(float deltaTime);
-	bool TestCollision(Physics::AABBCollider& other, Math::Vector3 otherPosition);
-
-	Physics::RigidBody* RigidBody();
-
 	Math::Vector3 GetPosition();
 	void SetPosition(Math::Vector3 position);
 	void MoveByVector(Math::Vector3 vector);
+
+	void Update(Time* time);
+
+	void TestCollision(Physics::AABBCollider& other, Math::Vector3 otherPosition);
 
 	void SetCameraPitch(float pitch);
 	void SetCameraYaw(float yaw);
@@ -32,7 +32,6 @@ public:
 	DirectX::XMMATRIX CameraView();
 
 private:
-	Physics::RigidBody m_rigidBody;
 	Physics::AABBCollider m_collider;
 	Physics::AABBCollider m_groundedCollider;
 };

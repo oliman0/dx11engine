@@ -11,15 +11,20 @@ bool Physics::AABBCollider::TestCollision(Physics::Collision& inout_collisionDat
 bool Physics::AABBCollider::TestCollision(Math::Vector3 position, AABBCollider& other, Math::Vector3 otherPosition) { return CollisionTest::AABBTestCollision(*this, position, other, otherPosition); }
 
 bool Physics::CollisionTest::AABBTestCollision(Collision& inout_collisionData, AABBCollider& a, Math::Vector3 aPosition, AABBCollider& b, Math::Vector3 bPosition) {
+	// Calculate the points of AABB translated by their positions.
 	Math::Vector3 aMin = a.min + aPosition;
 	Math::Vector3 aMax = a.max + aPosition;
 	Math::Vector3 bMin = b.min + bPosition;
 	Math::Vector3 bMax = b.max + bPosition;
 
+	// Is collision?
 	if (aMin.x < bMax.x && aMax.x > bMin.x &&
 		aMin.y < bMax.y && aMax.y > bMin.y &&
 		aMin.z < bMax.z && aMax.z > bMin.z)
 	{
+		// List of distances between faces of the colliding objects which we use
+		// to calculate the collision normal and collision depth.
+		// 
 		// If smallest is:
 		// 0: +X Face Collision
 		// 1: -X Face Collision
@@ -31,8 +36,10 @@ bool Physics::CollisionTest::AABBTestCollision(Collision& inout_collisionData, A
 								  std::abs(aMax.y - bMin.y), std::abs(aMin.y - bMax.y),
 								  std::abs(aMax.z - bMin.z), std::abs(aMin.z - bMax.z) };
 
+		// Get the smallest of the distances
 		int i = (int)std::distance(std::begin(dists), std::min_element(std::begin(dists), std::end(dists)));
 
+		// Select the normal of the closest two faces (The faces that collided)
 			  if (i == 0) { inout_collisionData.normal = Math::Vector3(-1, 0, 0); inout_collisionData.depth = dists[0]; }
 		 else if (i == 1) { inout_collisionData.normal = Math::Vector3(1, 0, 0); inout_collisionData.depth = dists[1]; }
 		 else if (i == 2) { inout_collisionData.normal = Math::Vector3(0, -1, 0); inout_collisionData.depth = dists[2]; }
@@ -50,11 +57,13 @@ bool Physics::CollisionTest::AABBTestCollision(Collision& inout_collisionData, A
 }
 
 bool Physics::CollisionTest::AABBTestCollision(AABBCollider& a, Math::Vector3 aPosition, AABBCollider& b, Math::Vector3 bPosition) {
+	// Calculate the points of AABB translated by their positions.
 	Math::Vector3 aMin = a.min + aPosition;
 	Math::Vector3 aMax = a.max + aPosition;
 	Math::Vector3 bMin = b.min + bPosition;
 	Math::Vector3 bMax = b.max + bPosition;
 
+	// Is collision?
 	if ((aMin.x < bMax.x && aMax.x > bMin.x) &&
 		(aMin.y < bMax.y && aMax.y > bMin.y) &&
 		(aMin.z < bMax.z && aMax.z > bMin.z))

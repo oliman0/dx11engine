@@ -1,5 +1,6 @@
 #include "engine_math.h"
 
+Math::Vector2::Vector2() : x(0.0f), y(0.0f) {}
 Math::Vector2::Vector2(float x, float y) : x(x), y(y) {}
 Math::Vector2::Vector2(float a) : x(a), y(a) {}
 Math::Vector2::~Vector2() {}
@@ -26,6 +27,7 @@ Math::Vector2& Math::Vector2::operator/=(float a) { x /= a; y /= a; return *this
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+Math::Vector3::Vector3() : x(0.0f), y(0.0f), z(0.0f) {}
 Math::Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 Math::Vector3::Vector3(float a) : x(a), y(a), z(a) {}
 Math::Vector3::~Vector3() {}
@@ -52,6 +54,7 @@ Math::Vector3& Math::Vector3::operator/=(float a) { x /= a; y /= a; z /= a; retu
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+Math::Vector4::Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
 Math::Vector4::Vector4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
 Math::Vector4::Vector4(float a) : x(a), y(a), z(a), w(a) {}
 Math::Vector4::~Vector4() {}

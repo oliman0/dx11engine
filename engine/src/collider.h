@@ -1,3 +1,6 @@
+// collider.h
+// This handles collision detection through AABBs
+
 #pragma once
 
 #include "engine_math.h"

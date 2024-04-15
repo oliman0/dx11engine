@@ -1,3 +1,6 @@
+// engine_math.h
+// A small Vector library because i got sick of DirectXMath
+
 #pragma once
 
 #define PI 3.14159265359f
@@ -8,6 +11,7 @@
 namespace Math {
 
 	struct Vector2 {
+		Vector2();
 		Vector2(float x, float y);
 		Vector2(float a);
 		~Vector2();
@@ -37,6 +41,7 @@ namespace Math {
 	};
 
 	struct Vector3 {
+		Vector3();
 		Vector3(float x, float y, float z);
 		Vector3(float a);
 		~Vector3();
@@ -67,6 +72,7 @@ namespace Math {
 	};
 
 	struct Vector4 {
+		Vector4();
 		Vector4(float x, float y, float z, float w);
 		Vector4(float a);
 		~Vector4();

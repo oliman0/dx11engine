@@ -1,3 +1,6 @@
+// timer.h
+// Handles Timers, Calculating Time Deltas and the Tick System (FixedUpdate)
+
 #pragma once
 
 #include <windows.h>

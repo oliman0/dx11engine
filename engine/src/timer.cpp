@@ -18,11 +18,17 @@ void Time::ResetTimer(TIMER& timer) { timer = GetCount(); }
 
 // Others
 
-bool Time::Tick() { 
+bool Time::Tick() {
+    // Tick is called once every frame
+    // So we calculate the Frame Delta Time
     m_frameDelta = GetTimerTime(m_frameTimer);
+
+    // Clamp the Frame Delta Time to avoid jumping by a large amount
     if (m_frameDelta > m_maxFrameDelta) m_frameDelta = m_maxFrameDelta;
+
     ResetTimer(m_frameTimer);
 
+    // Check the FixedUpdate should be called
     bool tick = GetTimerTime(m_tickTimer) >= 1.0f/m_tickRate;
     if (tick) {
         m_tickDelta = GetTimerTime(m_tickTimer);

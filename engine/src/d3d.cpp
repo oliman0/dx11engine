@@ -7,6 +7,8 @@ Direct3D::~Direct3D() {}
 
 bool Direct3D::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
 {
+	m_vsyncEnabled = vsync;
+
 	HRESULT hr;
 
 	//Describe our Buffer

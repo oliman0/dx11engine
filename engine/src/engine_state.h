@@ -1,3 +1,6 @@
+// engine_state.h
+// A struct to store pointers to main systems that need be passed to update loops etc
+
 #pragma once
 
 #include "./d3d.h"

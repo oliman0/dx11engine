@@ -107,17 +107,19 @@ void Game::OnUpdate(EngineState engineState) {
 
     Math::Vector3 up = player.GetCameraUpVector();
 
-    Math::Vector3 movement(0.0f);
+    Math::Vector3 movement;
+    Math::Vector3 velocity =player.GetVelocity();
 
     if (engineState.window->KeyHold(0x53)) movement += -front;
     if (engineState.window->KeyHold(0x57)) movement += front;
     if (engineState.window->KeyHold(0x44)) movement += -Math::Normalize(Math::Cross(front, up));
     if (engineState.window->KeyHold(0x41)) movement += Math::Normalize(Math::Cross(front, up));
 
-    movement = Math::Normalize(movement) * 50 * engineState.engineTime->FrameDelta();
-    player.RigidBody()->MoveByVector(movement);
+    if (engineState.window->KeyDown(VK_SPACE) && player.GetGrounded()) velocity.y += 50.0f;
 
-    if (engineState.window->KeyDown(VK_SPACE) && player.RigidBody()->GetGrounded()) player.RigidBody()->AddForce(Math::Vector3(0.0f, 2000.0f, 0.0f));
+    movement = Math::Normalize(movement) * 600 * engineState.engineTime->FrameDelta();
+    velocity += movement;
+    player.SetVelocity(velocity);
 
     player.Update(engineState.engineTime);
 
@@ -135,7 +137,7 @@ void Game::OnUpdate(EngineState engineState) {
     mvpMatrixBuffer.UpdateData(&cbPerObj);
 }
 
-void Game::OnFixedUpdate(EngineState engineState) { 
+void Game::OnFixedUpdate(EngineState engineState) {
     player.UpdatePhysics(engineState.engineTime->TickDelta());
 }
 

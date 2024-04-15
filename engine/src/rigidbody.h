@@ -1,3 +1,6 @@
+// rigidbody.h
+// Handles Rigidbody Physics and interpolation
+
 #pragma once
 
 #include "engine_math.h"
@@ -8,11 +11,10 @@ namespace Physics {
 	class RigidBody
 	{
 	public:
-		RigidBody(Math::Vector3 position, float mass, Math::Vector3 gravity);
+		RigidBody(Math::Vector3 position, float mass, Math::Vector3 gravity, float friction);
 		~RigidBody();
 
-		void StepSimulation(float deltaTime);
-		Math::Vector3 GetInterpolatedPosition(Time* time);
+		void UpdatePhysics(float deltaTime);
 
 		Math::Vector3 GetPosition();
 		void SetPosition(Math::Vector3 position);
@@ -33,13 +35,17 @@ namespace Physics {
 		void SetGrounded(bool grounded);
 		bool GetGrounded();
 
-	private:
+	protected:
+		Math::Vector3 GetInterpolatedPosition(Time* time);
+
+	protected:
 		Math::Vector3 m_oldPosition;
-		Math::Vector3 m_position;
+		Math::Vector3 m_physicsPosition;
 
 		Math::Vector3 m_velocity;
 		Math::Vector3 m_force;
 		float m_mass;
+		float m_friction;
 
 		bool m_grounded;
 		

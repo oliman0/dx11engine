@@ -1,6 +1,5 @@
 // app.h
-// Main Class of the Application
-// Handles Windows and Input
+// Main Class of the Application 
 
 #pragma once
 
