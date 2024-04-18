@@ -12,6 +12,7 @@
 #include "./cbuffer.h"
 #include "./player.h"
 #include "./engine_state.h"
+#include "./physics_world.h"
 
 #include "./engine_math.h"
 
@@ -55,12 +56,10 @@ private:
 	XMMATRIX projection;
 	Player player;
 
-	std::vector<Model> models;
-
 	VertexShader vertexShader;
 	PixelShader pixelShader;
 	ConstantBuffer mvpMatrixBuffer;
 
-	Physics::AABBCollider floorCollider;
+	PhysicsWorld* physicsWorld;
 };
 

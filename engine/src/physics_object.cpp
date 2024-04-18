@@ -4,7 +4,7 @@ Physics::Object::Object(ID3D11Device* device, ID3D11DeviceContext* deviceContext
 	RigidBody(position, mass, Math::Vector3(0.0f, -50.0f, 0.0f), 1.0f),
 	Model(device, deviceContext, singleVertexSize, vertexCount, vertices, indexCount, indices, texturePath),
 	m_collider(colliderMin, colliderMax),
-	m_groundedCollider(colliderMin - Math::Vector3(colliderMin.x / 2, -0.1f, colliderMin.z / 2), colliderMax - Math::Vector3(colliderMax.x / 2, -0.1f, colliderMax.z / 2)) {}
+	m_groundedCollider(colliderMin - Math::Vector3(0.0f, -0.1f, 0.0f), colliderMax - Math::Vector3(0.0f, -0.1f, 0.0f)) {}
 
 Physics::Object::~Object() {}
 
@@ -28,3 +28,5 @@ void Physics::Object::TestCollision(Physics::AABBCollider& other, Math::Vector3 
 	}
 	else m_grounded = false;
 }
+
+Physics::AABBCollider* Physics::Object::Collider() { return &m_collider; }

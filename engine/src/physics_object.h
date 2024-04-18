@@ -18,6 +18,7 @@ namespace Physics {
 		void Update(Time* time);
 
 		void TestCollision(Physics::AABBCollider& other, Math::Vector3 otherPosition);
+		AABBCollider* Collider();
 
 	private:
 		Math::Vector3 m_position;

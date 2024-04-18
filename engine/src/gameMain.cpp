@@ -6,46 +6,46 @@ Game::Game(EngineState engineState) :
 	vertexShader(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), 2, layout, L"./shaders/vertex_shader.hlsl"),
 	pixelShader(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), L"./shaders/pixel_shader.hlsl"),
 	mvpMatrixBuffer(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), 0, sizeof(cbPerObject)),
-    floorCollider(Math::Vector3(-50.0f, -5.0f, -50.0f), Math::Vector3(50.0f, 0.0f, 50.0f))
+    physicsWorld(new PhysicsWorld)
 {
     //Create the vertex buffer
     Vertex v[] =
     {
         // Front Face
-        Vertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
-        Vertex(-1.0f,  2.0f, -1.0f, 0.0f, 0.0f),
-        Vertex(1.0f,  2.0f, -1.0f, 1.0f, 0.0f),
-        Vertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f),
+        Vertex(-2.0f, 0.0f, -2.0f, 0.0f, 2.0f),
+        Vertex(-2.0f,  4.0f, -2.0f, 0.0f, 0.0f),
+        Vertex(2.0f,  4.0f, -2.0f, 2.0f, 0.0f),
+        Vertex(2.0f, 0.0f, -2.0f, 2.0f, 2.0f),
 
         // Back Face
-        Vertex(-1.0f, -1.0f, 1.0f, 1.0f, 1.0f),
-        Vertex(1.0f, -1.0f, 1.0f, 0.0f, 1.0f),
-        Vertex(1.0f,  1.0f, 1.0f, 0.0f, 0.0f),
-        Vertex(-1.0f,  1.0f, 1.0f, 1.0f, 0.0f),
+        Vertex(-2.0f, 0.0f, 2.0f, 2.0f, 2.0f),
+        Vertex(2.0f, 0.0f, 2.0f, 0.0f, 2.0f),
+        Vertex(2.0f,  4.0f, 2.0f, 0.0f, 0.0f),
+        Vertex(-2.0f,  4.0f, 2.0f, 2.0f, 0.0f),
 
         // Top Face
-        Vertex(-1.0f, 2.0f, -1.0f, 0.0f, 1.0f),
-        Vertex(-1.0f, 1.0f,  1.0f, 0.0f, 0.0f),
-        Vertex(1.0f, 1.0f,  1.0f, 1.0f, 0.0f),
-        Vertex(1.0f, 2.0f, -1.0f, 1.0f, 1.0f),
+        Vertex(-2.0f, 4.0f, -2.0f, 0.0f, 2.0f),
+        Vertex(-2.0f, 4.0f,  2.0f, 0.0f, 0.0f),
+        Vertex(2.0f, 4.0f,  2.0f, 2.0f, 0.0f),
+        Vertex(2.0f, 4.0f, -2.0f, 2.0f, 2.0f),
 
         // Bottom Face
-        Vertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f),
-        Vertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
-        Vertex(1.0f, -1.0f,  1.0f, 0.0f, 0.0f),
-        Vertex(-1.0f, -1.0f,  1.0f, 1.0f, 0.0f),
+        Vertex(-2.0f, 0.0f, -2.0f, 2.0f, 2.0f),
+        Vertex(2.0f, 0.0f, -2.0f, 0.0f, 2.0f),
+        Vertex(2.0f, 0.0f,  2.0f, 0.0f, 0.0f),
+        Vertex(-2.0f, 0.0f,  2.0f, 2.0f, 0.0f),
 
         // Left Face
-        Vertex(-1.0f, -1.0f,  1.0f, 0.0f, 1.0f),
-        Vertex(-1.0f,  1.0f,  1.0f, 0.0f, 0.0f),
-        Vertex(-1.0f,  2.0f, -1.0f, 1.0f, 0.0f),
-        Vertex(-1.0f, -1.0f, -1.0f, 1.0f, 1.0f),
+        Vertex(-2.0f, 0.0f,  2.0f, 0.0f, 2.0f),
+        Vertex(-2.0f,  4.0f,  2.0f, 0.0f, 0.0f),
+        Vertex(-2.0f,  4.0f, -2.0f, 2.0f, 0.0f),
+        Vertex(-2.0f, 0.0f, -2.0f, 2.0f, 2.0f),
 
         // Right Face
-        Vertex(1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
-        Vertex(1.0f,  2.0f, -1.0f, 0.0f, 0.0f),
-        Vertex(1.0f,  1.0f,  1.0f, 1.0f, 0.0f),
-        Vertex(1.0f, -1.0f,  1.0f, 1.0f, 1.0f),
+        Vertex(2.0f, 0.0f, -2.0f, 0.0f, 2.0f),
+        Vertex(2.0f,  4.0f, -2.0f, 0.0f, 0.0f),
+        Vertex(2.0f,  4.0f,  2.0f, 2.0f, 0.0f),
+        Vertex(2.0f, 0.0f,  2.0f, 2.0f, 2.0f),
     };
 
     DWORD i[] = {
@@ -74,7 +74,7 @@ Game::Game(EngineState engineState) :
         20, 22, 23
     };
 
-    models.push_back(Model(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), sizeof(Vertex), 24, v, 36, i, L"./res/textures/largecheck.png"));
+    physicsWorld->AddObject(new Physics::Object(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), Math::Vector3(), 1.0f, Math::Vector3(-2.0f, 0.0f, -2.0f), Math::Vector3(2.0f, 4.0f, 2.0f), sizeof(Vertex), 24, v, 36, i, L"./res/textures/largecheck.png"));
 
     Vertex v2[] = {
         Vertex(-50.0f, 0.0f, -50.0f, 0.0f, 10.0f),
@@ -88,15 +88,13 @@ Game::Game(EngineState engineState) :
         0,  2,  3,
     };
 
-    models.push_back(Model(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), sizeof(Vertex), 4, v2, 6, i2, L"./res/textures/grey_bordered_fill.png"));
+    physicsWorld->AddObject(new Physics::Object(engineState.direct3d->GetDevice(), engineState.direct3d->GetDeviceContext(), Math::Vector3(), 1.0f, Math::Vector3(-50.0f, -5.0f, -50.0f), Math::Vector3(50.0f, 0.0f, 50.0f), sizeof(Vertex), 4, v2, 6, i2, L"./res/textures/grey_bordered_fill.png"));
 }
 
 Game::~Game() {
     vertexShader.Delete();
     pixelShader.Delete();
     mvpMatrixBuffer.Delete();
-
-    for (auto& m : models) m.Delete();
 }
 
 void Game::OnStart() {}
@@ -108,7 +106,7 @@ void Game::OnUpdate(EngineState engineState) {
     Math::Vector3 up = player.GetCameraUpVector();
 
     Math::Vector3 movement;
-    Math::Vector3 velocity =player.GetVelocity();
+    Math::Vector3 velocity = player.GetVelocity();
 
     if (engineState.window->KeyHold(0x53)) movement += -front;
     if (engineState.window->KeyHold(0x57)) movement += front;
@@ -117,13 +115,17 @@ void Game::OnUpdate(EngineState engineState) {
 
     if (engineState.window->KeyDown(VK_SPACE) && player.GetGrounded()) velocity.y += 50.0f;
 
-    movement = Math::Normalize(movement) * 600 * engineState.engineTime->FrameDelta();
-    velocity += movement;
+    if (engineState.window->KeyDown(VK_CONTROL)) player.AddForce(Math::Vector3(0.0f, 10000.0f, 0.0f));
+    if (engineState.window->KeyDown(VK_SHIFT)) player.AddForce(movement * 20000.0f);
+
+    movement = Math::Normalize(movement) * 600;
+
+    if (engineState.window->KeyDown(0x58)) { velocity.y = 0.0f; movement.y = -1000000.0f; }
+
+    velocity += movement * engineState.engineTime->FrameDelta();
     player.SetVelocity(velocity);
 
-    player.Update(engineState.engineTime);
-
-    player.TestCollision(floorCollider, Math::Vector3(0.0f));
+    player.Update(physicsWorld, engineState.engineTime);
 
     if (engineState.window->KeyDown(VK_F1)) engineState.window->SetCursorLocked(!engineState.window->GetCursorLocked());
 
@@ -150,7 +152,7 @@ void Game::Draw(Direct3D* direct3d) {
 
     direct3d->ClearColourAndDepth(0.1f, 0.1f, 0.1f, 0.0f);
 
-    for (auto& m : models) m.Draw();
+    for (Physics::Object* o : physicsWorld->Objects()) o->Draw();
 
     direct3d->Present();
 }

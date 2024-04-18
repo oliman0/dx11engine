@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\physics_world.cpp" />
     <ClCompile Include="src\physics_object.cpp" />
     <ClCompile Include="src\collider.cpp" />
     <ClCompile Include="src\player.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="src\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\physics_world.h" />
     <ClInclude Include="src\physics_object.h" />
     <ClInclude Include="src\collider.h" />
     <ClInclude Include="src\player.h" />

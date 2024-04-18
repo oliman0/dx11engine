@@ -12,9 +12,11 @@ void Physics::RigidBody::UpdatePhysics(float deltaTime) {
 	// If on ground then keep y velocity above 0
 	if (m_grounded && m_velocity.y < 0.0f) m_velocity.y = 0.0f;
 
-	// If grounded apply ground friction
+	// Apply ground friction
 	m_velocity.x *= m_friction;
 	m_velocity.z *= m_friction;
+	if (std::abs(m_velocity.x) < 0.1f) m_velocity.x = 0.0f;
+	if (std::abs(m_velocity.z) < 0.1f) m_velocity.z = 0.0f;
 
 	// Euler Method
 	m_velocity += m_force / m_mass * deltaTime;

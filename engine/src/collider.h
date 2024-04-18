@@ -28,7 +28,6 @@ namespace Physics {
 		Math::Vector3 min;
 		Math::Vector3 max;
 	};
-
 	
 	namespace CollisionTest {
 		bool AABBTestCollision(Collision& inout_collisionData, AABBCollider& a, Math::Vector3 aPosition, AABBCollider& b, Math::Vector3 bPosition);

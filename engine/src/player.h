@@ -4,8 +4,8 @@
 #pragma once
 
 #include "rigidbody.h"
-#include "collider.h"
 #include "camera.h"
+#include "physics_world.h"
 
 class Player : public Physics::RigidBody, Camera
 {
@@ -17,9 +17,7 @@ public:
 	void SetPosition(Math::Vector3 position);
 	void MoveByVector(Math::Vector3 vector);
 
-	void Update(Time* time);
-
-	void TestCollision(Physics::AABBCollider& other, Math::Vector3 otherPosition);
+	void Update(PhysicsWorld* physicsWorld, Time* time);
 
 	void SetCameraPitch(float pitch);
 	void SetCameraYaw(float yaw);
